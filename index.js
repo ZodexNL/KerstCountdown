@@ -28,7 +28,9 @@ client.on('messageCreate', (message) => {
 
         console.log(now)
 
-        let difference = date.getTime() - now.getTime()
+        const timezoneDiff = 7200000
+
+        let difference = date.getTime() - now.getTime() + timezoneDiff
         let totaldays = Math.ceil(difference / (1000 * 60 * 60 * 24))
 
 
