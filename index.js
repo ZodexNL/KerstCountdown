@@ -18,10 +18,6 @@ client.on('ready', () => {
 
 const emoji = ':regional_indicator_k: :regional_indicator_e: :regional_indicator_r: :regional_indicator_s: :regional_indicator_t:'
 
-setTimeout(() => {
-
-}, 5000)
-
 client.on('messageCreate', (message) => {
     if (message.content.includes ('kerst')) {
 
@@ -51,6 +47,10 @@ client.on('messageCreate', (message) => {
 
             case totaldays > 1:
                 message.reply(`Over ${totaldays} dagen is het ${emoji}!`)
+                setTimeout(() => {
+
+                }, 5000)
+                
                 break;
             case totaldays == -1:
                 message.reply(`Het is vandaag 2e ${emoji} dag! Weer gourmetten zeker?`)
