@@ -47,10 +47,6 @@ client.on('messageCreate', (message) => {
 
             case totaldays > 1:
                 message.reply(`Over ${totaldays} dagen is het ${emoji}!`)
-                setTimeout(() => {
-
-                }, 5000)
-                
                 break;
             case totaldays == -1:
                 message.reply(`Het is vandaag 2e ${emoji} dag! Weer gourmetten zeker?`)
