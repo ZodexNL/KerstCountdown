@@ -26,10 +26,16 @@ client.on('messageCreate', (message) => {
 
         let now = new Date()
 
-        function addHours(numOfHours, now){
-            now.setTime(now.getTime() + numOfHours * 60 * 60 * 1000)
-            return now
-        }
+        // function addHours(numOfHours, now){
+        //     now.setTime(now.getTime() + numOfHours * 60 * 60 * 1000)
+        //     return now
+        // }
+
+        function addHours(numOfHours, date = new Date()) {
+            date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+          
+            return date;
+          }
 
         let result = addHours(2)
         console.log(result)
