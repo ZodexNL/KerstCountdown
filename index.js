@@ -24,23 +24,15 @@ client.on('messageCreate', (message) => {
         let year = new Date().getFullYear()
         let date = new Date(`12/25/${year}`)
 
-        let now = new Date()
-
-        // function addHours(numOfHours, now){
-        //     now.setTime(now.getTime() + numOfHours * 60 * 60 * 1000)
-        //     return now
-        // }
-
-        function addHours(numOfHours, date = new Date()) {
-            date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+        function addHours(numOfHours, now = new Date()) {
+            now.setTime(now.getTime() + numOfHours * 60 * 60 * 1000);
           
-            return date;
+            return now;
           }
 
-        let result = addHours(2)
-        console.log(result)
+        let nowResult = addHours(2)
 
-        let difference = date.getTime() - now.getTime()
+        let difference = date.getTime() - nowResult.getTime()
         let totaldays = Math.ceil(difference / (1000 * 60 * 60 * 24))
 
 
