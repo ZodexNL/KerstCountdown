@@ -17,7 +17,11 @@ client.on('ready', () => {
 
 
 const emoji = ':regional_indicator_k: :regional_indicator_e: :regional_indicator_r: :regional_indicator_s: :regional_indicator_t:'
-        
+
+setTimeout(() => {
+
+}, 5000)
+
 client.on('messageCreate', (message) => {
     if (message.content.includes ('kerst')) {
 
@@ -57,9 +61,6 @@ client.on('messageCreate', (message) => {
         }
     }
 
-    setTimeout(() => {
-
-    }, 5000)
 })
 
 client.login(process.env.TOKEN)
