@@ -15,12 +15,14 @@ client.on('ready', () => {
     console.log('The bot is ready')
 })
 
-const date = new Date('12/25/2022')
+
 const emoji = ':regional_indicator_k: :regional_indicator_e: :regional_indicator_r: :regional_indicator_s: :regional_indicator_t:'
         
 client.on('messageCreate', (message) => {
     if (message.content.includes ('kerst')) {
 
+        let year = new Date().getFullYear()
+        let date = new Date(`12/25/${year}`)
 
         let now = new Date()
 
@@ -35,7 +37,7 @@ client.on('messageCreate', (message) => {
                 break;
 
             case totaldays == 1:
-                message.reply(`Morgen is het ${emoji}! Heb je alles in huis?`)
+                message.reply(`Het is ${emoji} avond!`)
                 break;
 
             case totaldays > 1:
