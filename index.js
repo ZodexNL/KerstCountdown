@@ -28,7 +28,7 @@ client.on('messageCreate', (message) => {
 
         function addHours(numOfHours, now){
             now.setTime(now.getTime() + numOfHours * 60 * 60 * 1000)
-            return date1
+            return now
         }
 
         let result = addHours(2)
