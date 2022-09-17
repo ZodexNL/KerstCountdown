@@ -26,6 +26,8 @@ client.on('messageCreate', (message) => {
 
         let now = new Date()
 
+        console.log(now)
+
         let difference = date.getTime() - now.getTime()
         let totaldays = Math.ceil(difference / (1000 * 60 * 60 * 24))
 
