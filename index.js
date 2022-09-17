@@ -29,7 +29,6 @@ client.on('messageCreate', (message) => {
         let difference = date.getTime() - now.getTime()
         let totaldays = Math.ceil(difference / (1000 * 60 * 60 * 24))
 
-        console.log(totaldays)
 
         switch (true){
             case totaldays == 0:
