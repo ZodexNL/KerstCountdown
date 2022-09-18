@@ -38,10 +38,11 @@ client.on('messageCreate', (message) => {
     let split = message.content.split(' ')
 
     for (i =0; i < split.length; i++){
-        split[i].toLocaleLowerCase()
+        msgLower = split[i].toLocaleLowerCase()
+        console.log(msgLower)
         
-        if(commandTriggers[0] == split[i]){
-             msgContent = split[i]
+        if(commandTriggers[0] == msgLower){
+             msgContent = msgLower
              runCommand(msgContent)
             break
         }else{
