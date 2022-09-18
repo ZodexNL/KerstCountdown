@@ -34,11 +34,11 @@ client.on('messageCreate', (message) => {
     if (message.author.bot){
         return
     }
-    msgLower = message.content.toLocaleLowerCase()
 
     let split = message.content.split(' ')
 
     for (i =0; i < split.length; i++){
+        split[i].toLocaleLowerCase()
         
         if(commandTriggers[0] == split[i]){
              msgContent = split[i]
