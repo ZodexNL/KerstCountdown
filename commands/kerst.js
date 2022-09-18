@@ -17,7 +17,6 @@ module.exports = {
         let nowResult = addHours(2)
 
         let difference = date.getTime() - nowResult.getTime()
-        let 
 
         if(totaldays == 0){
             message.reply(`Het is vandaag ${emoji}! Fijne dagen toegewenst`)
