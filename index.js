@@ -19,7 +19,13 @@ client.on('ready', () => {
 const emoji = ':regional_indicator_k: :regional_indicator_e: :regional_indicator_r: :regional_indicator_s: :regional_indicator_t:'
 
 client.on('messageCreate', (message) => {
-    if (message.content.includes ('kerst')) {
+    if (message.author.bot){
+        return
+    }
+
+    msgLower = message.content.toLocaleLowerCase()
+
+    if (msgLower.includes ('kerst')) {
 
         let year = new Date().getFullYear()
         let date = new Date(`12/25/${year}`)
