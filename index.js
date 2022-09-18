@@ -1,4 +1,12 @@
 const { Client, GatewayIntentBits } = require('discord.js')
+const { readdirSync } = require('fs')
+const{ join } = require('path')
+
+const Discord = require('discord.js')
+const commandFiles = readdirSync(join(__dirname, "commands")).filter(file => file.endsWith(".js"))
+const emoji = ':regional_indicator_k: :regional_indicator_e: :regional_indicator_r: :regional_indicator_s: :regional_indicator_t:'
+const commandTriggers = ['kerst']
+
 require('dotenv/config')
 
 const client = new Client({
@@ -10,57 +18,41 @@ const client = new Client({
     ]
 })
 
+client.commands = new Discord.Collection()
+
+for (const file of commandFiles) {
+    const  command = require(join(__dirname, "commands", `${file}`))
+    client.commands.set(command.name, command);
+}
+
 
 client.on('ready', () => {
     console.log('The bot is ready!')
 })
 
-
-const emoji = ':regional_indicator_k: :regional_indicator_e: :regional_indicator_r: :regional_indicator_s: :regional_indicator_t:'
-
 client.on('messageCreate', (message) => {
     if (message.author.bot){
         return
     }
-
     msgLower = message.content.toLocaleLowerCase()
 
-    if (msgLower.includes ('kerst')) {
+    let split = message.content.split(' ')
 
-        let year = new Date().getFullYear()
-        let date = new Date(`12/25/${year}`)
-
-        function addHours(numOfHours, now = new Date()) {
-            now.setTime(now.getTime() + numOfHours * 60 * 60 * 1000);
-          
-            return now;
-          }
-
-        let nowResult = addHours(2)
-
-        let difference = date.getTime() - nowResult.getTime()
-        let totaldays = Math.ceil(difference / (1000 * 60 * 60 * 24))
-
-
-        switch (true){
-            case totaldays == 0:
-                message.reply(`Het is vandaag ${emoji}! Fijne dagen toegewenst`)
-                break;
-
-            case totaldays == 1:
-                message.reply(`Het is ${emoji} avond!`)
-                break;
-
-            case totaldays > 1:
-                message.reply(`Over ${totaldays} dagen is het ${emoji}!`)
-                break;
-            case totaldays == -1:
-                message.reply(`Het is vandaag 2e ${emoji} dag! Weer gourmetten zeker?`)
-                break;
-            case totaldays == -2:
-                message.reply(`Restjes eten en uitbuiken....`)
-                break;
+    for (i =0; i < split.length; i++){
+        
+        if(commandTriggers[0] == split[i]){
+             msgContent = split[i]
+             runCommand(msgContent)
+            break
+        }else{
+            msgContent = split[i]
+            console.log(msgContent)
+             continue
         }
+    }
+
+    function runCommand(msgContent){
+        client.commands.get(msgContent).run(message, emoji)
     }
 
 })
