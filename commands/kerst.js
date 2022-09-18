@@ -18,11 +18,6 @@ module.exports = {
 
         let difference = date.getTime() - nowResult.getTime()
 
-        if(totaldays == 0){
-            message.reply(`Het is vandaag ${emoji}! Fijne dagen toegewenst`)
-        }
-
-
         switch (totaldays = Math.ceil(difference / (1000 * 60 * 60 * 24))){
             case 0:
                 message.reply(`Het is vandaag ${emoji}! Fijne dagen toegewenst`)
