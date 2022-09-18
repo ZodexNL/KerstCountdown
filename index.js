@@ -39,7 +39,6 @@ client.on('messageCreate', (message) => {
 
     for (i =0; i < split.length; i++){
         msgLower = split[i].toLocaleLowerCase()
-        console.log(msgLower)
         
         if(commandTriggers[0] == msgLower){
              msgContent = msgLower
@@ -47,7 +46,6 @@ client.on('messageCreate', (message) => {
             break
         }else{
             msgContent = split[i]
-            console.log(msgContent)
              continue
         }
     }
