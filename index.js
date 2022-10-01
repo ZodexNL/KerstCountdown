@@ -1,10 +1,13 @@
 const { Client, GatewayIntentBits } = require('discord.js')
 const { readdirSync } = require('fs')
-const{ join } = require('path')
+const { join } = require('path')
 
 // New command handler
 const { Sern } = require('@sern/handler')
 
+// //MongoDB
+// const mongoose = require('mongoose')
+// const testSchema = require('./test-schema')
 
 
 const Discord = require('discord.js')
@@ -29,7 +32,7 @@ const client = new Client({
 client.commands = new Discord.Collection()
 
 for (const file of commandFiles) {
-    const  command = require(join(__dirname, "commandsNoPre", `${file}`))
+    const command = require(join(__dirname, "commandsNoPre", `${file}`))
     client.commands.set(command.name, command);
 }
 
@@ -38,36 +41,46 @@ for (const file of commandFiles) {
 Sern.init({
     client,
     defaultPrefix,
-    commands : 'commands',
+    commands: 'commands',
 })
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('The bot is ready!')
+
+    // await mongoose.connect(process.env.MONGO_URI, {
+    //     keepAlive: true,
+    // })
+
+    // setTimeout(async () => {
+    //     await new testSchema({
+    //         message: 'hello world',
+    //     }).save()
+    // }, 1000)
 
 })
 
 client.on('messageCreate', (message) => {
 
-    if (message.author.bot){
+    if (message.author.bot) {
         return
     }
 
     let split = message.content.split(' ')
 
-    for (i =0; i < split.length; i++){
+    for (i = 0; i < split.length; i++) {
         msgLower = split[i].toLocaleLowerCase()
-        
-        if(commandTriggers[0] == msgLower){
-             msgContent = msgLower
-             runCommand(msgContent)
+
+        if (commandTriggers[0] == msgLower) {
+            msgContent = msgLower
+            runCommand(msgContent)
             break
-        }else{
+        } else {
             msgContent = split[i]
-             continue
+            continue
         }
     }
 
-    function runCommand(msgContent){
+    function runCommand(msgContent) {
         client.commands.get(msgContent).run(message, emoji)
     }
 
