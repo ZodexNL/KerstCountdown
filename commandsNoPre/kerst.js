@@ -2,7 +2,7 @@ module.exports = {
     name: 'kerst',
     aliases: ['kerst'],
     cooldown: 1000 * 5,
-    description: "kerst",
+    description: "kerst", 
 
     async run (message, emoji) {
         let year = new Date().getFullYear()
