@@ -5,6 +5,6 @@ exports.default = commandModule({
   description: 'A ping pong command',
   type: CommandType.Both,
   execute(ctx) {
-    ctx.reply('pong!')
+    ctx.reply('pong!') 
   }
 });
